@@ -11,6 +11,15 @@ public class Pedido {
     private Double calcularPrecoBase(Integer quantidade, Double preco) {
         return preco * quantidade;
     }
+
+    private Double calcularDescontos(Double precoBase) {
+        Double percentualDesconto = cliente.obterInformacaoDesconto();
+        //5%
+        //5 / 100 = 0.05
+        Double percentualConvertido = percentualDesconto / 100d;
+        Double valorDesconto = precoBase * percentualConvertido;
+        return precoBase - valorDesconto;
+    }
     
     public Double calcularPreco() {
         Double total = 0.0d;
@@ -20,9 +29,10 @@ public class Pedido {
             Produto produto = linhadePedido.obterProduto();
             Double preco = produto.obterDetalhesDoPreco();
             Double precoBase = calcularPrecoBase(quantidade,preco);
+            Double precoFinal = calcularDescontos(precoBase);
+            total += precoFinal;
         }
-
-
+        return total;
     }
-
+    
 }
