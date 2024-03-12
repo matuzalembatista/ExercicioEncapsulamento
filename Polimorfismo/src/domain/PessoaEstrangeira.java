@@ -1,16 +1,18 @@
 package domain;
 
-public class PessoaEstrangeira extends Pessoa {
+public class PessoaEstrangeira implements Validavel {
+
+    private Integer codigo;
+
+    private String nome;
 
     private String passaporte;
 
     @Override
-    public boolean validaAbstract() {
-        super.valida();
-
+    public boolean valida() {
         boolean validouPassaporte = true;
         
-        return validouPassaporte;        
+        return validaGenerico(nome) && validouPassaporte;        
     }
 
 }

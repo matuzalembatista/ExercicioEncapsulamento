@@ -1,15 +1,23 @@
 package domain;
 
-public class PessoaJuridica extends Pessoa {
+public class PessoaJuridica implements Validavel {
+
+    private Integer codigo;
+
+    private String nome;
 
     private String cnpj;
 
     @Override
-    public boolean validaAbstract() {
-        super.valida();
-        
+    public boolean valida() {
         boolean validouCnpj = true;
-        return validouCnpj;
+        return validaGenerico(nome) && validouCnpj && isPessoaRegular();
+    }
+
+    public boolean isPessoaRegular() {
+        boolean validouReceitaFederal = true;
+
+        return validouReceitaFederal;
     }
     
 }
