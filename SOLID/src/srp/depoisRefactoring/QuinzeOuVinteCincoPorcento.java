@@ -1,7 +1,5 @@
 package srp.depoisRefactoring;
 
-import srp.antesRefactoring.Funcionario;
-
 public class QuinzeOuVinteCincoPorcento implements RegraDeCalculo {
 
     @Override
