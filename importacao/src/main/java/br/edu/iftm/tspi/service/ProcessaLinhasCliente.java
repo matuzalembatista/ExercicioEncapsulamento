@@ -5,27 +5,26 @@ import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import br.edu.iftm.tspi.dao.ClienteDao;
 import br.edu.iftm.tspi.domain.Cliente;
 
-public class ProcessaCliente {
+public class ProcessaLinhasCliente {
 
-    private String path;
+    private List<String> lines;
 
     private ClienteDao clienteDao;
 
     private Integer lote;
 
-    public ProcessaCliente(String path) {
-        this.path = path;
+    public ProcessaLinhasCliente(List<String> lines) {
+        this.lines = lines;
         clienteDao = new ClienteDao();
     }
 
     public void processa() throws Exception {
-        BufferedReader br = new BufferedReader(new FileReader(path));
-        while (br.ready()) {
-            String linha = br.readLine();
+        for (String linha: lines) {
             String opcao = linha.substring(0, 1);
             if (opcao.equals("2")) {
                 processaDetalhe(linha);
@@ -36,7 +35,6 @@ public class ProcessaCliente {
             }
         }
         clienteDao.salvarLote(lote);
-        br.close();
     }
 
     private void processaCabecalho(String linha) throws Exception {

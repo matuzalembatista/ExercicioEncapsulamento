@@ -20,6 +20,15 @@ public class Cliente {
 
     private Date dataHoraCadastro;
 
+    public boolean isAtualizou(String valor) {
+        for (char c: valor.toCharArray()) {
+            if (c != '_') {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String getCpf() {
         return cpf;
     }
