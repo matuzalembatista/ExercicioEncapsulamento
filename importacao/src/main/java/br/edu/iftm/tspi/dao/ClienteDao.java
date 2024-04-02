@@ -66,4 +66,14 @@ public class ClienteDao {
        throw new Exception("Não encontrei o último lote de cliente");
     }
 
+    public void salvarLote(Integer lote) throws Exception {
+        Connection conexao = Conexao.getConnection();
+        String sql = "INSERT INTO tbControleRecebimento(tiparq,numlot,dathraprc) "+
+                     "values ('CLI',?,now())";
+        PreparedStatement ps = conexao.prepareStatement(sql);
+        ps.setInt(1, lote);
+        ps.execute();
+    }
+
+
 }

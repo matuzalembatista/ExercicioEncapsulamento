@@ -15,6 +15,8 @@ public class ProcessaCliente {
 
     private ClienteDao clienteDao;
 
+    private Integer lote;
+
     public ProcessaCliente(String path) {
         this.path = path;
         clienteDao = new ClienteDao();
@@ -33,6 +35,7 @@ public class ProcessaCliente {
                 throw new Exception("Desconheço essa opção de processar a linha: "+opcao);
             }
         }
+        clienteDao.salvarLote(lote);
         br.close();
     }
 
@@ -44,6 +47,7 @@ public class ProcessaCliente {
             throw new Exception("Lote recebido: "+lote+ 
                                 "diferente do lote esperado:"+loteEsperado);
         }
+        this.lote = lote;
     }
 
     private void processaDetalhe(String linha) throws Exception {
