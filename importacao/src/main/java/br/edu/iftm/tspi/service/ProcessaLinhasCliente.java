@@ -1,7 +1,5 @@
 package br.edu.iftm.tspi.service;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
