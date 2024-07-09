@@ -2,6 +2,8 @@ package br.edu.iftm.tspi.domain;
 
 public class Conta {
 
+    private String inclusaoAlteracao;
+
     private String numero;
 
     private Double valorLimite;
@@ -9,6 +11,23 @@ public class Conta {
     private Integer diaVencimento;
 
     private Cliente cliente;
+
+    public boolean isAtualizou(String valor) {
+        for (char c: valor.toCharArray()) {
+            if (c != '_') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getInclusaoAlteracao() {
+        return inclusaoAlteracao;
+    }
+
+    public void setInclusaoAlteracao(String inclusaoAlteracao) {
+        this.inclusaoAlteracao = inclusaoAlteracao;
+    }
 
     public String getNumero() {
         return numero;
@@ -48,7 +67,4 @@ public class Conta {
                 + ", cliente=" + cliente + "]";
     }
 
-    
-
-    
 }
