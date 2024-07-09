@@ -26,10 +26,10 @@ public class ContaDao {
         String sql = "UPDATE tbConta set ";
         int sequencia = 1;
         
-        if (conta.isAtualizou(conta.getDiaVencimento().toString())) {
+        if (conta.getDiaVencimento() != null && conta.isAtualizou(conta.getDiaVencimento().toString())) {
             sql += " diaven = ?,";
         }
-        if (conta.isAtualizou(conta.getValorLimite().toString())) {
+        if (conta.getValorLimite() != null && conta.isAtualizou(conta.getValorLimite().toString())) {
             sql += " vlrlim = ?,";          
         }
         if (conta.isAtualizou(conta.getCliente().getCpf())) {
@@ -41,11 +41,11 @@ public class ContaDao {
 
         PreparedStatement ps = connection.prepareStatement(sql);
 
-        if (conta.isAtualizou(conta.getDiaVencimento().toString())) {
+        if (conta.getDiaVencimento() != null && conta.isAtualizou(conta.getDiaVencimento().toString())) {
             ps.setInt(sequencia,conta.getDiaVencimento());
             sequencia++;
         }
-        if (conta.isAtualizou(conta.getValorLimite().toString())) {
+        if (conta.getValorLimite() != null && conta.isAtualizou(conta.getValorLimite().toString())) {
             ps.setDouble(sequencia,conta.getValorLimite());
             sequencia++;            
         }

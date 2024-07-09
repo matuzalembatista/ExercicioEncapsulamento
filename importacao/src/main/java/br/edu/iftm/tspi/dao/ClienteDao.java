@@ -10,7 +10,7 @@ public class ClienteDao {
 
     public void salvarCliente(Cliente cliente) throws Exception {
         Connection connection = Conexao.getConnection();
-        String sql = "INSERT INTO tbCliente(cpfcli,nomcli,"+
+        String sql = "INSERT IGNORE INTO tbCliente(cpfcli,nomcli,"+
                      "endcli,baicli,cidcli,sigest,datcad) "+
                      " values (?,?,?,?,?,?,now())";
         PreparedStatement ps = connection.prepareStatement(sql);

@@ -65,9 +65,19 @@ public class ProcessaLinhasConta {
         cliente.setCpf(cpf);
         conta.setCliente(cliente);
         conta.setNumero(numeroConta);
-        conta.setDiaVencimento(Integer.valueOf(diaVencimento));
-        Double valorLimiteDouble = Double.parseDouble(valorLimite) / 100;
-        conta.setValorLimite(valorLimiteDouble);
+        if (diaVencimento.contains("_")) {
+            conta.setDiaVencimento(null);    
+        } else {
+            conta.setDiaVencimento(Integer.valueOf(diaVencimento));
+        }
+
+        if (valorLimite.contains("_")) {
+            conta.setValorLimite(null);    
+        } else {
+            Double valorLimiteDouble = Double.parseDouble(valorLimite) / 100;
+            conta.setValorLimite(valorLimiteDouble);
+        }
+        
         return conta;
     }
 
