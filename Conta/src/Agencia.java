@@ -1,31 +1,28 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Agencia {
     private String numero;
-    private List<Conta> contas; 
-    
+    private List<Conta> contas = new ArrayList<>(); 
+
+    public Agencia(String numero) {
+      this.numero = numero;
+    }
+
+    public void addConta(Conta conta) {
+      this.contas.add(conta);
+    }
+
     public void saque(String numeroConta,double valor) throws ContaException {
        Conta conta = getConta(numeroConta);
-       if (valor > 0) {
-          if (conta.getSaldo() >= valor) {
-             conta.setSaldo(conta.getSaldo() - valor);
-          } else {
-             throw new ContaException("Conta sem saldo suficiente: "+conta.getSaldo());
-          }
-       } else {
-             throw new ContaException("Valor inválido para saque "+valor);
-       }
+       conta.saque(valor);    
     }
 
     public void deposito(String numeroConta,double valor) throws ContaException {
-       Conta conta = getConta(numeroConta);
-       if (valor > 0) {
-          conta.setSaldo(conta.getSaldo() + valor);
-       } else {
-          throw new ContaException("Valor inválido para depósito "+valor);
-       }
+        Conta conta = getConta(numeroConta);
+        conta.deposito(valor);
     }
-
+    
     private Conta getConta(String numeroConta) throws ContaException {
        for (Conta conta: contas) {
           if (conta.getNumeroConta().equals(numeroConta)) {
@@ -36,4 +33,4 @@ public class Agencia {
     }
 
 }
-    
+     
