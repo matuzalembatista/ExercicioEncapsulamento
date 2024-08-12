@@ -1,11 +1,13 @@
-public class Cliente {
+public abstract class Cliente {
     private String nome;
-    private String tipo; // "PessoaFisica" ou "PessoaJuridica"
+    private String tipo;
 
-    public Cliente(String nome, String tipo) {
+    public Cliente(String nome, String tipo2) {
         this.nome = nome;
         this.tipo = tipo;
     }
+
+    public abstract double aplicarDesconto(double precoBase);
 
     public String getNome() {
         return nome;
@@ -22,4 +24,5 @@ public class Cliente {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
 }
